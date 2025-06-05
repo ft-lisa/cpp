@@ -3,6 +3,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main() {
     // try {
@@ -72,25 +73,46 @@ int main() {
 
 
 
-    try{
-        Bureaucrat joe("Joe", 3);
-        ShrubberyCreationForm presi("presi");
-        presi.execute(joe);
+    // try{
+    //     Bureaucrat joe("Joe", 3);
+    //     ShrubberyCreationForm presi("presi");
+    //     presi.execute(joe);
+    // }
+    // catch (std::exception &exep)
+    // {
+    //     std::cerr << "Error : " << exep.what() << std::endl;
+    // }
+    // try{
+    //     Bureaucrat joe("Joe", 3);
+    //     ShrubberyCreationForm  presi("presi");
+    //     joe.signForm(presi);
+    //     presi.execute(joe);
+    // }
+    // catch (std::exception &exep)
+    // {
+    //     std::cerr << "Error : " << exep.what() << std::endl;
+    // }
+
+    try {
+        Intern someRandomIntern;
+        AForm* rrf;
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
     }
     catch (std::exception &exep)
     {
-        std::cerr << "Error : " << exep.what() << std::endl;
+        std::cerr << "Error :" << exep.what() << std::endl;
     }
-    try{
-        Bureaucrat joe("Joe", 3);
-        ShrubberyCreationForm  presi("presi");
-        joe.signForm(presi);
-        presi.execute(joe);
+
+        try {
+        Intern someRandomIntern;
+        AForm* rrf;
+        rrf = someRandomIntern.makeForm("robo request", "Bender");
     }
     catch (std::exception &exep)
     {
-        std::cerr << "Error : " << exep.what() << std::endl;
+        std::cerr << "Error :" << exep.what() << std::endl;
     }
+    
     
     
     return 0;
