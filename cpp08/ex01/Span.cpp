@@ -6,6 +6,14 @@ Span::Span(unsigned int N) : _i(0)
         _size = N;
 }
 
+Span::Span() : _i(2)
+{
+        _array = new int[2];
+        _size = 2;
+        _array[0] = 4;
+        _array[1] = 2;
+}
+
 Span::Span(const Span& other) : _i(0)
 {
         _size = other._size;
@@ -68,6 +76,8 @@ void Span::addNumbers(int num, int times)
 int Span::shortestSpan()
 {
         int shortSpan = 2147483647;
+        if (_i <= 1)
+                return -1;
         for(unsigned int i = 0; i < _i; i++)
         {
                 for(unsigned int j = i + 1; j < _i; j++)
@@ -86,6 +96,8 @@ int Span::longestSpan()
         int smaller = 2147483647;
         int bigger = 0;
 
+        if (_i <= 1)
+                return -1;
         for(unsigned int i = 0; i < _i; i++)
         {
                 if (_array[i] < smaller)
