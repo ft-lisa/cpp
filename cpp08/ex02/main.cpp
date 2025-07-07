@@ -3,7 +3,11 @@
 int main()
 {
         MutantStack<int> mstack;
+        if (mstack.empty())
+                std::cout << "La stack est vide" << std::endl;
         mstack.push(5);
+        if (mstack.empty())
+                std::cout << "La stack est vide" << std::endl;
         mstack.push(17);
         std::cout << mstack.top() << std::endl;
         mstack.pop();
