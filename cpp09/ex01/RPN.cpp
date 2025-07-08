@@ -76,57 +76,77 @@ void afficher(std::stack<int>& pile) {
     std::cout << "]" << std::endl;
 }
 
-int operator(std::stack<int> stack, char str, int result)
+int ope(std::stack<int>& stack, char str, int result)
 {
         int num1;
         int num2;
+        int num3;
+        bool choice = 0;
 
-        num2 = stack.pop();
+        num2 = stack.top();
+        stack.pop();
         if (stack.empty())
         {
-                switch (str)
-                {
-                        case '+':
-                        printf("Opérateur : addition\n");
-                        break;
-                        case '-':
-                        printf("Opérateur : soustraction\n");
-                        break;
-                        case '*':
-                        printf("Opérateur : multiplication\n");
-                        break;
-                        case '/':
-                        printf("Opérateur : division\n");
-                        break;
-                        default:
-                        printf("Erreur : opérateur inconnu '%c'\n", op);
-                        break;
-                }        
+                num1 = num2;
+                num2 = result;
+                result = 0;
         }
-}
-
-int calculated(char* str)
-{
-        std::stack<int> stack;
-        int i = 0;
-        int result = 0;
-        while (*str != 0)
+        else
         {
-                str = fill_stack(str);
-                operator(stack, str[0], result);
-
-                str++;
+                num1 = stack.top();
+                stack.pop();
+                choice = 1;
         }
+        switch (str)
+        {
+                case '+':
+                        num3 = num1 + num2;
+                break;
+                case '-':
+                        num3 = num1 - num2;
+                break;
+                case '*':
+                        num3 = num1 * num2;
+                break;
+                case '/':
+                        num3 = num1 / num2;
+                break;
+                default:
+                std::cout << "error" << std::endl;
+                break;
+        }
+        if (choice == 1)
+                stack.push(num3);
+        else
+                result = result + num3;
+        std::cout << num1 << str << num2 << " = " << result << std::endl;
+        return result;        
 }
 
-void* fill_stack(char* str, std::stack<int> stack)
+char* fill_stack(char* str, std::stack<int>& stack)
 {
-        while (*str && *str >= '0' && *str <= '9' || *str == ' ')
+        while (*str && ((*str >= '0' && *str <= '9') || *str == ' '))
         {
                 if (*str >= '0' && *str <= '9')
                         stack.push(*str - 48);
                 str++;
         }
-        // afficher(stack);
+        
         return str;
+}
+
+int calculated(char* str)
+{
+        std::stack<int> stack;
+        int result = 0;
+        while (*str != 0)
+        {
+                str = fill_stack(str, stack);
+                //afficher(stack);
+                ope(stack, str[0], result);
+                str++;
+        }
+        result = stack.top();
+        stack.pop();
+        return result;
 }
