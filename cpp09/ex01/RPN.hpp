@@ -14,5 +14,6 @@
 
 int check_expression(char* expr);
 std::stack<int> fill_stack(char* str);
+int calculated(char* str);
 
 #endif

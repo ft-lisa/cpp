@@ -6,7 +6,7 @@ int main(int argc, char** argv)
                 return std::cout << "error" << std::endl, 1;
         if(check_expression(argv[1]) == 0)
                 return 1;
-        return caculated(argv[1]);
+        std::cout << "resultat : " << calculated(argv[1]) << std::endl;
         // fill_stack(argv[1]);
         return 0;
 }
