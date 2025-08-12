@@ -13,24 +13,12 @@ void fill_list_deque(char** sequence, std::list<int>& list, std::deque<int>& deq
 
 int sort_merge_insert_list(std::list<int>& list)
 {
-	std::list<int> biggest;
-	std::list<int> duo;
-	int part = 1;
+	std::list<int> a;
+	std::list<int> b;
+	std::list<int> reste;
 
-	if (part == 1)
-	{
+	
 
-		if(list.size() <= 1)
-			part = 2;
-	}
-
-	// for(std::list<int>::iterator it = list.begin(); it != list.end(); it++)
-	// {
-	// 	if (*it > *it + 1)
-	// 		biggest.push_back(*it);
-	// 	else
-	// 		biggest.push_back(*it + 1);
-	// }
 }
 
 int	ft_double(int argc, char **liste, int reference)

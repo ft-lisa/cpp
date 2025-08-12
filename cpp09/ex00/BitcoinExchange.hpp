@@ -2,18 +2,25 @@
 #define BITCOINEXCHAMGE_CPP
 
 #include <iostream>
-#include <string>
+
 #include <cstring>
+#include <ctime>
 #include <climits>
 #include <cstdlib> 
 #include <iomanip>
 #include <fstream>
+#include <sstream>
+#include <map>
 
-#define ERR_NO_FILE "./btc [file]"
-#define ERR_FILE "Unable to open file for reading"
-#define ERR_LINE "date | value"
+#define ERR_NO_FILE "Error: could not open file"
+#define ERR_FILE "Error: could not open file"
+#define ERR_LINE "Error: bad input => "
+#define ERR_VAL "Error: too large a number"
+#define ERR_NVAL "Error: not a positive number"
+#define ERR_CHAR "Error: bad input => "
+#define ERR_DATE "Error: bad input => "
 
-int check_file(std::string file);
+int calcule_bitcoin(std::string str);
 
 
 
