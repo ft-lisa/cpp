@@ -10,12 +10,52 @@ void fill_list_deque(char** sequence, std::list<int>& list, std::deque<int>& deq
 	}
 }
 
+void moveBlockBeforeIterator(std::list<int> &lst,
+                              std::list<int>::iterator it,
+                              int n) {
+    if (lst.empty() || n <= 0) return;
+
+    // Trouver le début du bloc n éléments avant `it`
+    std::list<int>::iterator start = it;
+    std::advance(start, -n); // ⚠ il faut s'assurer que n <= distance(begin, it)
+
+    // Déplacer le bloc [start, it) juste après `it`
+    std::list<int>::iterator after_it = it;
+    ++after_it; // position d'insertion après it
+    lst.splice(after_it, lst, start, it);
+}
+
 
 int sort_merge_insert_list(std::list<int>& list)
 {
-	std::list<int> a;
-	std::list<int> b;
-	std::list<int> reste;
+	int size = 1;
+	int i = 1;
+	int a = -1;
+	int b = -1;
+
+	while (size < list.size())
+	{
+		i = 1;
+		for (std::list<int>::iterator it; it != list.end(); it++)
+		{
+			if(i % size == 0)
+			{
+				if (a ==-1)
+					a = *it;
+				else
+				{
+					b = *it;
+					if (a > b)
+					{
+						
+					}
+				}
+					
+			}
+			i++;
+		}
+		size *= 2;
+	}
 
 	
 
