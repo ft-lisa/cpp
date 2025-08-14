@@ -20,5 +20,9 @@
 
 int	check_expression(int ar, char **l);
 void fill_list_deque(char** sequence, std::list<int>& list, std::deque<int>& deque);
+int sort_list_stage1(std::list<int>& list);
+int sort_list_stage2(std::list<int>& list, int size);
+
+
 
 #endif

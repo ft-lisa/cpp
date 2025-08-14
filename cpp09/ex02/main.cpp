@@ -20,7 +20,10 @@ int main(int argc, char** argv)
                 return 1;
         fill_list_deque(argv, list, deque);
         afficher(list, "list");
-        afficher(deque, "deque");
-        sort_merge_insert(list);
+        //afficher(deque, "deque");
+        int size = sort_list_stage1(list);
+        sort_list_stage2(list, size);
+        afficher(list, "list");
+
         return 0;
 }

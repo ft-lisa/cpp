@@ -9,34 +9,41 @@ void fill_list_deque(char** sequence, std::list<int>& list, std::deque<int>& deq
 		deque.push_back(value);
 	}
 }
-
-void moveBlockBeforeIterator(std::list<int> &lst,
-                              std::list<int>::iterator it,
-                              int n) {
+void movePreviousBlockAfterIt(std::list<int> &lst, std::list<int>::iterator it, int n) {
     if (lst.empty() || n <= 0) return;
-
-    // Trouver le début du bloc n éléments avant `it`
-    std::list<int>::iterator start = it;
-    std::advance(start, -n); // ⚠ il faut s'assurer que n <= distance(begin, it)
-
-    // Déplacer le bloc [start, it) juste après `it`
-    std::list<int>::iterator after_it = it;
-    ++after_it; // position d'insertion après it
-    lst.splice(after_it, lst, start, it);
+    std::list<int>::iterator it2 = it;
+    int size = n;
+        while(n > 0)
+        {
+        //     for (std::list<int>::iterator i = lst.begin(); i != lst.end(); ++i)
+        //             std::cout << *i << " ";
+        //         std::cout << std::endl;
+                std::advance(it2, -size); 
+                std::iter_swap(it, it2);
+                n--;
+                it--;
+                it2 = it;
+                
+        }
 }
 
-
-int sort_merge_insert_list(std::list<int>& list)
+/**
+ * permet de faire un pre trie des plus grand nombre des paires
+ * 
+ *
+ * @param i pour savoir sur quel nombre on est
+ * @param a pour garder en memoire le nombre de la paire d'avant
+ * @param size pour simuler des paires
+ */
+int sort_list_stage1(std::list<int>& list)
 {
-	int size = 1;
-	int i = 1;
-	int a = -1;
-	int b = -1;
-
+	int i,a;
+	unsigned long size = 1;
 	while (size < list.size())
 	{
+		a = -1;
 		i = 1;
-		for (std::list<int>::iterator it; it != list.end(); it++)
+		for (std::list<int>::iterator it = list.begin(); it != list.end(); it++, i++)
 		{
 			if(i % size == 0)
 			{
@@ -44,22 +51,62 @@ int sort_merge_insert_list(std::list<int>& list)
 					a = *it;
 				else
 				{
-					b = *it;
-					if (a > b)
-					{
-						
-					}
-				}
-					
+					if (a > *it)
+						movePreviousBlockAfterIt(list, it, size);	
+					a = -1;
+				}		
 			}
-			i++;
 		}
 		size *= 2;
 	}
-
-	
-
+	return size;
 }
+/**
+ * copie seulement les pairs pair et 1
+ * 1 2 3 4 | 5 6 7 8 | 9 10 11 12 |13 14 15 16 | 17 18 19 20
+ *    yes      yes        no           yes          no
+ */
+void copy_in_main_pend(std::list<int>&list, std::list<int>&main,std::list<int>&pend, int size)
+{
+	int reste;
+	std::list<int>::iterator it = list.begin();
+
+	for(int i; i < size ;i++, it++)
+	{
+		reste = std::ceil(i / size);
+		if(i < size || reste % 2 == 0)
+			main.push_back(*it);
+		else
+			pend.push_back(*it);
+	}
+}
+
+/**
+ * debut de l'algo tant qu'on est pas revenue a un seul nombre 
+ * creation de pend et main
+ * insert dans main
+ *
+ * 
+ */
+int sort_list_stage2(std::list<int>& list, int size)
+{
+	size = size / 4;
+	std::list<int> main;
+	std::list<int> pend;
+	
+	while(size != 1)
+	{
+		copy_in_main_pend(list, main, pend, size);
+		while(!pend.empty())
+		{
+			//insert dans main
+		}
+
+		size /= 2;
+	}
+}
+
+
 
 int	ft_double(int argc, char **liste, int reference)
 {
