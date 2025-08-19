@@ -11,19 +11,19 @@ void afficher(const Container& c, const std::string& nom) {
 
 int main(int argc, char** argv)
 {
-        std::list<int> list;
+        std::vector<int> vector;
         std::deque<int> deque;
 
         if (argc == 1)
                 return std::cerr << ERR_ARG << std::endl, 1;
         if(check_expression(argc, argv) == 0)
                 return 1;
-        fill_list_deque(argv, list, deque);
-        afficher(list, "list");
+        fill_vector_deque(argv, vector, deque);
+        afficher(vector, "vector");
         //afficher(deque, "deque");
-        int size = sort_list_stage1(list);
-        sort_list_stage2(list, size);
-        afficher(list, "list");
+        int size = sort_vector_stage1(vector);
+        sort_vector_stage2(vector, size);
+        afficher(vector, "vector");
 
         return 0;
 }
