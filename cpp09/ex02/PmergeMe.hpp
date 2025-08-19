@@ -8,7 +8,7 @@
 #include <cstdlib> 
 #include <iomanip>
 #include <vector>
-#include <list>
+#include <deque>
 #include <cmath>
 #include <stack>
 
@@ -19,9 +19,9 @@
 #define ERR_POLISH "error in polish reverse notation"
 
 int	check_expression(int ar, char **l);
-void fill_list_deque(char** sequence, std::list<int>& list, std::deque<int>& deque);
-int sort_list_stage1(std::list<int>& list);
-int sort_list_stage2(std::list<int>& list, int size);
+void fill_vector_deque(char** sequence, std::vector<int>& vector, std::deque<int>& deque);
+int sort_vector_stage1(std::vector<int>& vector);
+int sort_vector_stage2(std::vector<int>& vector, int size);
 
 
 
