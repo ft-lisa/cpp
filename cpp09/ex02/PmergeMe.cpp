@@ -132,16 +132,18 @@ void insert_in_main(std::vector<int>& main, std::vector<int>& pend, long long n,
 	std::cout << "start : " << i << " end : " << end << " size : " << size << " jacob " << n << std::endl;
 	 printvector(main, "main in");
 	 printvector(pend, "pend in");
-	while(i > end) // faire quand le nombre est plus grand que le dernier de main
+// faire quand le nombre est plus grand que le dernier de main
+	while(i > end || (end == 0 && i == 0) ) 
 	{
 		
 		std::cout << "pend[i] = " << pend[i] << std::endl;
 		std::cout << "main[i] = " << *it << std::endl;
 		if(pend[i] < *it || it + 1 == main.end())
 		{
-			if (it + 1 == main.end())
+			if (it + 1 == main.end() && !(pend[i] < *it))
 				it++;
-			it = it - size + 1;
+			else
+				it = it - size + 1;
 			for(int k = 0; k < size; k++)
 			{
 				it = main.insert(it, pend[i - k]);
@@ -172,6 +174,36 @@ void copy_in_list(std::vector<int>& main, std::vector<int>& vector)
 	{
 		vector[i] = *it;
 	}
+}
+
+char **split(const char *str, char sep) {
+    // Compter le nombre de morceaux
+    int count = 1;
+    for (const char *p = str; *p; p++) {
+        if (*p == sep)
+            count++;
+    }
+
+    // Allouer le tableau de pointeurs (+1 pour NULL final)
+    char **result = (char **)malloc((count + 1) * sizeof(char*));
+    if (!result) return NULL;
+
+    int idx = 0;
+    const char *start = str;
+    for (const char *p = str; ; p++) {
+        if (*p == sep || *p == '\0') {
+            int len = p - start;
+            result[idx] = (char*)malloc(len + 1);
+            strncpy(result[idx], start, len);
+            result[idx][len] = '\0';
+            idx++;
+            if (*p == '\0')
+                break;
+            start = p + 1;
+        }
+    }
+    result[idx] = NULL; // Fin du tableau
+    return result;
 }
 
 
