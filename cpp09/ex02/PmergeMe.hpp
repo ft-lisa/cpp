@@ -22,6 +22,8 @@ int	check_expression(int ar, char **l);
 void fill_vector_deque(char** sequence, std::vector<int>& vector, std::deque<int>& deque);
 int sort_vector_stage1(std::vector<int>& vector);
 int sort_vector_stage2(std::vector<int>& vector, int size);
+char **split(const char *str, char sep);
+
 
 
 
