@@ -7,7 +7,6 @@
 #include <climits>
 #include <cstdlib> 
 #include <iomanip>
-#include <vector>
 #include <list>
 #include <cmath>
 #include <stack>
@@ -17,6 +16,7 @@
 #define ERR_SPACE "there must be a space between each character"
 #define ERR_NUM "0 >= num <= 9"
 #define ERR_POLISH "error in polish reverse notation"
+#define ERR_DIVZ "division by 0"
 
 
 int check_expression(char* expr);

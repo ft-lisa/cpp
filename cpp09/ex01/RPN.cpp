@@ -15,10 +15,12 @@ int all_digits_or_operators(char *str)
 int check_space(char *str)
 {
     int i = 0;
+    if (str[strlen(str) - 1] == ' ')
+        return std::cerr << ERR_SPACE << std::endl, 0;
     while (str[i])
     {
         if (i % 2 == 0 && str[i] == ' ')
-                return std::cerr << ERR_SPACE, 0;
+                return std::cerr << ERR_SPACE << std::endl, 0;
         if (i % 2 == 1 && str[i] != ' ')
         {
                 if (str[i] >= '0' && str[i] <= '9')
@@ -38,7 +40,7 @@ int check_polish(char* str)
         int num = 0;
         int ope = 0;
         if (!(str[0] >= '0' && str[0] <= '9') || !(str[2] >= '0' && str[2] <= '9'))
-                std::cerr << ERR_POLISH << std::endl;
+                return std::cerr << ERR_POLISH << std::endl, 0;
         while (str[i])
         {
                 if (str[i] >= '0' && str[i] <= '9')
@@ -62,7 +64,6 @@ int check_expression(char* expr)
                 return 0;
         return 1;
 }
-
 int ope(std::stack<int>& stack, char str, int result)
 {
         int num1;
@@ -71,6 +72,8 @@ int ope(std::stack<int>& stack, char str, int result)
 
         num2 = stack.top();
         stack.pop();
+        if (stack.empty())
+                throw std::runtime_error(ERR_POLISH);
         num1 = stack.top();
         stack.pop();
         switch (str)
@@ -85,6 +88,10 @@ int ope(std::stack<int>& stack, char str, int result)
                         num3 = num1 * num2;
                 break;
                 case '/':
+                        if (num2 == 0)
+                        {
+                                throw std::runtime_error("Division par zero");
+                        }        
                         num3 = num1 / num2;
                 break;
                 default:
